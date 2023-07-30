@@ -1,6 +1,6 @@
 FROM gradle:7.6.1-jdk17-alpine  
 COPY . .
-
+RUN gradle build && ls -ls
 RUN apk add --no-cache nodejs yarn && yarn install
 
 RUN yarn build

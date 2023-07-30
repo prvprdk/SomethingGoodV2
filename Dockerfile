@@ -1,11 +1,15 @@
-FROM node:12-alpine AS frontend-builder
-RUN yarn install
-FROM gradle:7.6.1-jdk17-alpine AS backend-builder
- 
-COPY . .
-RUN gradle build
+FROM openjdk:17-jdk-alpine
+COPY . /app/backend
+RUN apk add --no-cache nodejs yarn && \
+    cd /app/frontend && \
+    yarn install
 
-FROM openjdk:17.0.1-jdk-slim
+RUN cd /app/frontend && \
+    yarn build && \
+    mkdir -p /app/backend/src/main/resources/static && \
+    cp -r /app/frontend/build/* /app/backend/src/main/resources/static/
 
-COPY --from=backend-builder /build/libs/somethinggood-0.0.1-SNAPSHOT.jar some.jar
-ENTRYPOINT ["java", "-jar", "some.jar"]
+RUN cd /app/backend && \
+    ./gradlew build
+
+CMD ["java", "-jar", "/app/backend/gradle/libs/somethinggood-0.0.1-SNAPSHOT.jar"]

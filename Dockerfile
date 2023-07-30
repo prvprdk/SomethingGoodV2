@@ -1,6 +1,6 @@
 FROM gradle:7.6.1-jdk17-alpine AS backend-builder
 COPY . .
-RUN gurdle build
+RUN gradle build
 
 FROM openjdk:17.0.1-jdk-slim
 

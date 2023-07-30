@@ -1,14 +1,9 @@
-//install for backend
 FROM gradle:7.6.1-jdk17-alpine  
 COPY . .
 
-//install for frontend
 RUN apk add --no-cache nodejs yarn && yarn install
-     
-//bild for frontend
- RUN yarn build
 
-//build for backend
+ RUN yarn build
 ./gradlew build
 
 EXPOSE 8080

@@ -1,5 +1,5 @@
 FROM node:12-alpine AS frontend-builder
-yarn install
+RUN yarn install
 FROM gradle:7.6.1-jdk17-alpine AS backend-builder
  
 COPY . .

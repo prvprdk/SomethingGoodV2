@@ -16,7 +16,7 @@
             <v-card-actions>
                  <span class=" body-1  mx-auto" text-align>continue with </span>
                  <v-btn class="mx-3"  color="warning"dark>
-                  <a href="http://localhost:8080/oauth2/authorization/google"> google</a>
+                  <a href="https://somethinggoodv2.onrender.com/oauth2/authorization/google"> google</a>
                 </v-btn>
             </v-card-actions>
         </v-row>

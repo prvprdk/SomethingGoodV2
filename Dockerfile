@@ -1,4 +1,4 @@
-FROM gradle:7.2.0-jdk17 as someproject
+FROM gradle:7.6.1-jdk17-alpine as someproject
 COPY . .
 RUN gradle build
 
